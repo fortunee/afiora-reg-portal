@@ -1,1 +1,1 @@
-# shopAfric-reg-portal
+# shopafric-reg-portal
