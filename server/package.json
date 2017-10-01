@@ -5,5 +5,10 @@
   "main": "server.js",
   "repository": "https://github.com/fortunee/shopafric-reg-portal.git",
   "author": "Fortune Ekeruo",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "morgan": "^1.9.0"
+  }
 }
