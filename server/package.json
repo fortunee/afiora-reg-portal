@@ -1,0 +1,9 @@
+{
+  "name": "shopafric",
+  "version": "1.0.0",
+  "description": "ShopAfric",
+  "main": "server.js",
+  "repository": "https://github.com/fortunee/shopafric-reg-portal.git",
+  "author": "Fortune Ekeruo",
+  "license": "MIT"
+}
