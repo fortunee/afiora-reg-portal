@@ -1,5 +1,5 @@
 /**
- * @todo Pull in and use controllers
+ * @todo Pull in and use middlewares and controllers
  * @param {object} router 
  */
 const usersRoutes = (router) => {
