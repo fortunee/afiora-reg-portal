@@ -2,7 +2,7 @@
  * @todo Pull in and use controllers
  * @param {object} router 
  */
-const usersRoute = (router) => {
+const usersRoutes = (router) => {
     // Creating a freaking product seller
     router.route('/users/create')
         .post((req, res) => {
@@ -30,3 +30,5 @@ const usersRoute = (router) => {
             res.send({ message: 'Delete a seller'});
         });
 }
+
+export default usersRoutes;
