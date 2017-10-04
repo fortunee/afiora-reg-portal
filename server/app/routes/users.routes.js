@@ -1,3 +1,7 @@
+/**
+ * @todo Pull in and use controllers
+ * @param {object} router 
+ */
 const usersRoute = (router) => {
     // Creating a freaking product seller
     router.route('/users/create')
@@ -7,7 +11,22 @@ const usersRoute = (router) => {
 
     // Getting all product sellers
     router.route('/users/all')
-        .post((req, res) => {
+        .get((req, res) => {
             res.send({ message: 'Getting all product sellers' });
+        });
+    
+    /**
+     * Gets, Updates & Deletes
+     * a single freaking product seller!
+     */
+    router.route('/user/:id')
+        .get((req, res) => {
+            res.send({ message: 'Get a single seller'});
+        })
+        .put((req, res) => {
+            res.send({ message: 'Update a single seller'});
+        })
+        .delete((req, res) => {
+            res.send({ message: 'Delete a seller'});
         });
 }
