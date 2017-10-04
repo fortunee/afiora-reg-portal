@@ -22,12 +22,10 @@ class UsersCtrl {
                         message: 'User with the email/username already exists'
                     });
             }
-
             // @todo hash password before saving to DB
-            
             // Create the freaking User
             UsersModel.create(req.body).then((user) => {
-                
+                return res.status(201).send({ message: 'User created successfully', user })
             }).catch(err => console.error(err))
         })
         res.send({ message: 'Creating a product seller' });
