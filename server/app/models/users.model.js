@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 /**
- * User Schema for product sellers
+ * Users Schema for product sellers
  */
-const UserSchema = new Schema({
+const UsersSchema = new Schema({
     businessName: { type: String, required: true},
     email: { type: String, required: true, unique: true },
     phone: { type: Number },
@@ -17,3 +17,7 @@ const UserSchema = new Schema({
     createdAt: Date,
     updatedAt: Date
 });
+
+const UsersModel = mongoose.model('UsersModel', UsersSchema);
+
+export default UsersModel;
