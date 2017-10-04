@@ -1,6 +1,4 @@
-import { UserModel } from './../models';
-
-// console.log('This is user model', UserModel)
+import { UsersModel } from './../models';
 
 class UsersCtrl {
     constructor() {
@@ -8,6 +6,30 @@ class UsersCtrl {
     }
 
     createUser(req, res) {
+        // Check if User exists
+        UsersModel.findOne(
+            {
+                $or: [
+                    { email: req.body.email },
+                    { username: req.body.username }
+                ]
+            }
+        )
+        .then((existingUser) => {
+            if(existingUser) {
+                return res.status(409)
+                    .send({
+                        message: 'User with the email/username already exists'
+                    });
+            }
+
+            // @todo hash password before saving to DB
+            
+            // Create the freaking User
+            UsersModel.create(req.body).then((user) => {
+                
+            }).catch(err => console.error(err))
+        })
         res.send({ message: 'Creating a product seller' });
     }
 

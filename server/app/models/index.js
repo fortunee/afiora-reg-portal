@@ -1,5 +1,5 @@
 import UsersModel from './users.model';
 
-export default {
+export {
     UsersModel
 }
