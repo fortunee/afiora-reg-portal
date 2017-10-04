@@ -19,7 +19,7 @@ const usersRoutes = (router) => {
      * Gets, Updates & Deletes
      * a single freaking product seller!
      */
-    router.route('/user/:id')
+    router.route('/users/:id')
         .get((req, res) => {
             res.send({ message: 'Get a single seller'});
         })
