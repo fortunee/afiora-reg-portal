@@ -2,6 +2,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+// Manage environment variables
+dotenv.config();
 
 // Connect to mongoDB
 mongoose.connect(process.env.MONGO_URL);
