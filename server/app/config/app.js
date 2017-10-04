@@ -1,6 +1,10 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import mongoose from 'mongoose';
+
+// Connect to mongoDB
+mongoose.connect(process.env.MONGO_URL);
 
 import routes from './../routes/';
 
