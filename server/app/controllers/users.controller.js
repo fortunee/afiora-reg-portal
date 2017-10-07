@@ -43,7 +43,14 @@ class UsersCtrl {
     }
 
     getUser(req, res) {
-        res.send({ message: 'Get a single seller'});
+        let queryParam = req.params.id;
+        UsersModel.find(queryParam).then((user) => {
+            if (!user) {
+                return res.status(404).send({ message: 'User not found'});
+            }
+            let userAttribute = _userAttributes(user[0]);
+            return res.status(200).send({user: userAttribute});
+        }).catch(err => console.error(err));
     }
 
     getAllUsers(req, res) {
