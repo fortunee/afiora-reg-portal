@@ -54,7 +54,9 @@ class UsersCtrl {
     }
 
     getAllUsers(req, res) {
-        res.send({ message: 'Getting all product sellers' });
+        Users.find().then((users) => {
+            return res.send({ users });
+        })
     }
 
     updateUser(req, res) {
