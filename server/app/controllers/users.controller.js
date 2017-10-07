@@ -81,7 +81,15 @@ class UsersCtrl {
     }
 
     deleteUser(req, res) {
-        res.send({ message: 'Delete a seller'});
+        Users.findByIdAndRemove(req.params.id).then((user) => {
+            if (user) {
+              return res.status(200).send({ message: 'User successfully deleted' });
+            }
+        
+            return res.status(404).send({ message: 'User does not exist. Cannot delete' });
+          }).catch((error) => {
+            res.status(400).send({ message: 'Unable to delete user', error: error.message });
+          });
     }
 }
 
