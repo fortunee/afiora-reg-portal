@@ -1,3 +1,5 @@
+import UsersCtrl from './../controllers/users.controller';
+
 /**
  * @todo Pull in and use middlewares and controllers
  * @param {object} router 
@@ -5,30 +7,20 @@
 const usersRoutes = (router) => {
     // Creating a freaking product seller
     router.route('/users/create')
-        .post((req, res) => {
-            res.send({ message: 'Creating a product seller' });
-        });
+        .post(UsersCtrl.createUser);
 
     // Getting all product sellers
     router.route('/users/all')
-        .get((req, res) => {
-            res.send({ message: 'Getting all product sellers' });
-        });
+        .get(UsersCtrl.getAllUsers);
     
     /**
      * Gets, Updates & Deletes
      * a single freaking product seller!
      */
     router.route('/users/:id')
-        .get((req, res) => {
-            res.send({ message: 'Get a single seller'});
-        })
-        .put((req, res) => {
-            res.send({ message: 'Update a single seller'});
-        })
-        .delete((req, res) => {
-            res.send({ message: 'Delete a seller'});
-        });
+        .get(UsersCtrl.getUser)
+        .put(UsersCtrl.updateUser)
+        .delete(UsersCtrl.deleteUser);
 }
 
 export default usersRoutes;
