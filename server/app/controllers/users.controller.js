@@ -1,4 +1,5 @@
 import { Users } from './../models';
+import ValidatePassword from './../helpers/passwordValidator';
 
 function  _userAttributes(user) {
     return {
@@ -33,7 +34,10 @@ class UsersCtrl {
                         message: 'User with the email/username already exists'
                     });
             }
-            // @todo hash password before saving to DB
+            // @todo JWT
+
+            // Hash user's password
+            req.body.password = ValidatePassword.hashPassword(req.body.password)
             // Create the freaking User
             Users.create(req.body).then((user) => {
                 let userAttribute = _userAttributes(user);
