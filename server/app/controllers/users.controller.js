@@ -1,4 +1,4 @@
-import { UsersModel } from './../models';
+import { Users } from './../models';
 
 function  _userAttributes(user) {
     return {
@@ -18,7 +18,7 @@ class UsersCtrl {
 
     createUser(req, res) {
         // Check if User exists
-        UsersModel.findOne(
+        Users.findOne(
             {
                 $or: [
                     { email: req.body.email },
@@ -35,7 +35,7 @@ class UsersCtrl {
             }
             // @todo hash password before saving to DB
             // Create the freaking User
-            UsersModel.create(req.body).then((user) => {
+            Users.create(req.body).then((user) => {
                 let userAttribute = _userAttributes(user);
                 return res.status(201).send({ message: 'User created successfully', userAttribute })
             }).catch(err => console.error(err))
@@ -44,7 +44,7 @@ class UsersCtrl {
 
     getUser(req, res) {
         let queryParam = req.params.id;
-        UsersModel.find(queryParam).then((user) => {
+        Users.find(queryParam).then((user) => {
             if (!user) {
                 return res.status(404).send({ message: 'User not found'});
             }

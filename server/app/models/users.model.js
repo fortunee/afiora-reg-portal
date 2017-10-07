@@ -18,6 +18,6 @@ const UsersSchema = new Schema({
     updatedAt: Date
 });
 
-const UsersModel = mongoose.model('UsersModel', UsersSchema);
+const Users = mongoose.model('Users', UsersSchema);
 
-export default UsersModel;
+export default Users;
