@@ -5,7 +5,7 @@ function  _userAttributes(user) {
         businessName: user.businessName,
         email: user.email,
         username: user.username,
-        productCatories: user.productCatories,
+        productCategories: user.productCategories,
         phone: user.phone,
         address: user.address
     }
@@ -60,7 +60,24 @@ class UsersCtrl {
     }
 
     updateUser(req, res) {
-        res.send({ message: 'Update a single seller'});
+        Users.findById({ _id: req.params.id }).then((user) => {
+            if(!user) {
+                return res.status(404).send({ message: 'User not found!'});
+            }
+
+            user.businessName = req.body.businessName || user.businessName;
+            user.email = req.body.email || user.email;
+            user.phone = req.body.phone || user.phone;
+            user.username = req.body.username || user.username;
+            user.password = req.body.password || user.password; //@todo Hash password
+            user.productCategories = req.body.productCategories || user.productCategories;
+            user.address = req.body.address || user.address;
+
+            user.save().then((updatedUser) => {
+                let user = _userAttributes(updatedUser)
+                return res.status(200).send({ message: 'User updated!', user });
+            }).catch(err => console.error(err));
+        }).catch(err => console.error(err));
     }
 
     deleteUser(req, res) {
