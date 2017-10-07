@@ -37,10 +37,10 @@ class UsersCtrl {
                         message: 'User with the email/username already exists'
                     });
             }
-            // @todo JWT
+            // @todo JWT and shoot an email to the user
 
             // Hash user's password
-            req.body.password = ValidatePassword.hashPassword(req.body.password)
+            req.body.password = ValidatePassword.hashPassword(req.body.password);
             // Create the freaking User
             Users.create(req.body).then((user) => {
                 const token = jwt.sign({
@@ -78,18 +78,28 @@ class UsersCtrl {
             if(!user) {
                 return res.status(404).send({ message: 'User not found!'});
             }
-
+            
+            // Hash any updated password
+            const hashedPassword = (req.body.password) ? ValidatePassword.hashPassword(req.body.password) : user.password;
+           
             user.businessName = req.body.businessName || user.businessName;
             user.email = req.body.email || user.email;
             user.phone = req.body.phone || user.phone;
             user.username = req.body.username || user.username;
-            user.password = req.body.password || user.password; //@todo Hash password
+            user.password = hashedPassword
             user.productCategories = req.body.productCategories || user.productCategories;
             user.address = req.body.address || user.address;
 
             user.save().then((updatedUser) => {
+                const token = jwt.sign({
+                    /* eslint-disable no-underscore-dangle*/
+                    userId: updatedUser._id,
+                    username: updatedUser.username,
+                    verifiedUser: updatedUser.isVerified
+                  }, secret, { expiresIn: '120 minutes' });
+
                 let user = _userAttributes(updatedUser)
-                return res.status(200).send({ message: 'User updated!', user });
+                return res.status(200).send({ message: 'User updated!', user, token });
             }).catch(err => console.error(err));
         }).catch(err => console.error(err));
     }
