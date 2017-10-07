@@ -1,5 +1,8 @@
+import jwt from 'jsonwebtoken';
 import { Users } from './../models';
 import ValidatePassword from './../helpers/passwordValidator';
+
+const secret = process.env.SECRET || 'AGU NECHE MBA';
 
 function  _userAttributes(user) {
     return {
@@ -40,8 +43,15 @@ class UsersCtrl {
             req.body.password = ValidatePassword.hashPassword(req.body.password)
             // Create the freaking User
             Users.create(req.body).then((user) => {
+                const token = jwt.sign({
+                    /* eslint-disable no-underscore-dangle*/
+                    userId: user._id,
+                    username: user.username,
+                    verifiedUser: user.isVerified
+                  }, secret, { expiresIn: '60 minutes' });
+
                 let userAttribute = _userAttributes(user);
-                return res.status(201).send({ message: 'User created successfully', userAttribute })
+                return res.status(201).send({ message: 'User created successfully', userAttribute, token })
             }).catch(err => console.error(err))
         }).catch(err => console.error(err))
     }
