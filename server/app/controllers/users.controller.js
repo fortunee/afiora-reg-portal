@@ -1,19 +1,19 @@
 import { UsersModel } from './../models';
 
+function  _userAttributes(user) {
+    return {
+        businessName: user.businessName,
+        email: user.email,
+        username: user.username,
+        productCatories: user.productCatories,
+        phone: user.phone,
+        address: user.address
+    }
+}
+
 class UsersCtrl {
     constructor() {
 
-    }
-
-    _userAttributes(user) {
-        return {
-            businessName: use.businessName,
-            email: user.email,
-            username: user.username,
-            productCatories: user.productCatories,
-            phone: user.phone,
-            address: user.address
-        }
     }
 
     createUser(req, res) {
@@ -36,11 +36,10 @@ class UsersCtrl {
             // @todo hash password before saving to DB
             // Create the freaking User
             UsersModel.create(req.body).then((user) => {
-                let newUser = this._userAttributes(user);
-                return res.status(201).send({ message: 'User created successfully', newUser })
+                let userAttribute = _userAttributes(user);
+                return res.status(201).send({ message: 'User created successfully', userAttribute })
             }).catch(err => console.error(err))
-        })
-        res.send({ message: 'Creating a product seller' });
+        }).catch(err => console.error(err))
     }
 
     getUser(req, res) {
