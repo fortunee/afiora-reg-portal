@@ -5,6 +5,17 @@ class UsersCtrl {
 
     }
 
+    _userAttributes(user) {
+        return {
+            businessName: use.businessName,
+            email: user.email,
+            username: user.username,
+            productCatories: user.productCatories,
+            phone: user.phone,
+            address: user.address
+        }
+    }
+
     createUser(req, res) {
         // Check if User exists
         UsersModel.findOne(
@@ -25,7 +36,8 @@ class UsersCtrl {
             // @todo hash password before saving to DB
             // Create the freaking User
             UsersModel.create(req.body).then((user) => {
-                return res.status(201).send({ message: 'User created successfully', user })
+                let newUser = this._userAttributes(user);
+                return res.status(201).send({ message: 'User created successfully', newUser })
             }).catch(err => console.error(err))
         })
         res.send({ message: 'Creating a product seller' });

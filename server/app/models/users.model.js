@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+    import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
@@ -12,7 +12,7 @@ const UsersSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isVerified: { type: Boolean, default: false },
-    productCategory: String,
+    productCategories: String,
     address: String,
     createdAt: Date,
     updatedAt: Date
