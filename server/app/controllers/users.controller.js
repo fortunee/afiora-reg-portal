@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { User } from './../models';
 import ValidatePassword from './../helpers/passwordValidator';
+import { sendVerificationEmail } from './../helpers/mailer';
 
 const secret = process.env.SECRET || 'AGU NECHE MBA';
 
@@ -45,7 +46,11 @@ class UsersCtrl {
                     username: user.username,
                     verifiedUser: user.isVerified
                   }, secret, { expiresIn: '60 minutes' });
+                
+                // Send verification email to the User
+                sendVerificationEmail(user.email, token);
 
+                // Return specific attributes to the client
                 let userAttribute = _userAttributes(user);
                 return res.status(201).send({ message: 'User created successfully', userAttribute, token })
             }).catch(err => console.error(err))

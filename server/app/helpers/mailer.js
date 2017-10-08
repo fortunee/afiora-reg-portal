@@ -1,5 +1,8 @@
 
 import mailgun from 'mailgun-js';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 const apiKey = process.env.APIKEY;
 const domain = process.env.DOMAIN;
@@ -7,7 +10,7 @@ const dsl = process.env.DSL;
 const sendMail = mailgun({ apiKey, domain });
 
 export const sendVerificationEmail = (email, token) => {
-  // Get the actual server address or stick to the localhost please
+  // Get the actual server address or stick to the localhost
   const serverAddress = process.env.SERVERADDRESS;
   const port = process.env.PORT;
   const verificationLink = `${serverAddress}:${port}/verifyemail/${token}`;
