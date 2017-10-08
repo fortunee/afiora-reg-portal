@@ -1,17 +1,20 @@
 import jwt from 'jsonwebtoken';
 import { User } from './../models';
 import ValidatePassword from './../helpers/passwordValidator';
+import { sendVerificationEmail } from './../helpers/mailer';
 
 const secret = process.env.SECRET || 'AGU NECHE MBA';
 
 function  _userAttributes(user) {
     return {
+        id: user._id,
         businessName: user.businessName,
         email: user.email,
         username: user.username,
         productCategories: user.productCategories,
         phone: user.phone,
-        address: user.address
+        address: user.address,
+        isVerified: user.isVerified
     }
 }
 
@@ -33,7 +36,6 @@ class UsersCtrl {
                         message: 'User with the email/username already exists'
                     });
             }
-            // @todo JWT and shoot an email to the user
 
             // Hash user's password
             req.body.password = ValidatePassword.hashPassword(req.body.password);
@@ -45,7 +47,11 @@ class UsersCtrl {
                     username: user.username,
                     verifiedUser: user.isVerified
                   }, secret, { expiresIn: '60 minutes' });
+                
+                // Send verification email to the User
+                sendVerificationEmail(user.email, token);
 
+                // Return specific attributes to the client
                 let userAttribute = _userAttributes(user);
                 return res.status(201).send({ message: 'User created successfully', userAttribute, token })
             }).catch(err => console.error(err))
@@ -111,6 +117,47 @@ class UsersCtrl {
             res.status(400).send({ message: 'Unable to delete user', error: error.message });
           });
     }
+
+    /**
+    * verifyEmail method: Verifies user
+    * @param {object} req
+    * @param {object} res
+    * @return {object}
+    */
+    verifyEmail (req, res) {
+        const token = req.params.token;
+        jwt.verify(token, secret, (err, decoded) => {
+            if (decoded === undefined) {
+                return res.status(401).send({ message: 'Invalid verification link' });
+            }
+        
+            // Find and verify user if they aren't verified already
+            User.findById(decoded.userId, (err, user) => {
+                if (err) {
+                    return res.send(err.errors);
+                }
+        
+                // Bash a nonexistent user
+                if (user === null) {
+                    return res.status(404).send({ message: 'Invalid verification link' });
+                }
+        
+                // Already Verified Thanks
+                if (user.isVerified) {
+                    return res.status(409).send({ message: 'User is already verified' });
+                }
+        
+                // I see you're legit, I'll update you right away.
+                user.isVerified = true;
+                user.save().then((verifiedUser) => {
+                    if (!verifiedUser) {
+                        return res.status(400).send({ message: 'Unable to verify user. Please try again' });
+                    }
+                    return res.status(200).send({ message: 'Verification Successful' });
+                }).catch(err => console.error(err));
+            });
+        });
+    };
 }
 
 export default new UsersCtrl();
