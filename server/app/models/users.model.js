@@ -12,6 +12,7 @@ const UsersSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isVerified: { type: Boolean, default: false },
+    admin: { type: Boolean, default: false },
     productCategories: String,
     address: String,
     createdAt: Date,
