@@ -1,4 +1,5 @@
 import UsersCtrl from './../controllers/users.controller';
+import Authentication from './../middlewares/authentication';
 
 /**
  * @todo Pull in and use middlewares and controllers
@@ -11,16 +12,16 @@ const usersRoutes = (router) => {
 
     // Getting all product sellers
     router.route('/users/all')
-        .get(UsersCtrl.getAllUsers);
+        .get(Authentication.verifyToken, Authentication.verifyAdmin, UsersCtrl.getAllUsers);
     
     /**
      * Gets, Updates & Deletes
      * a single freaking product seller!
      */
     router.route('/users/:id')
-        .get(UsersCtrl.getUser)
-        .put(UsersCtrl.updateUser)
-        .delete(UsersCtrl.deleteUser);
+        .get(Authentication.verifyToken, UsersCtrl.getUser)
+        .put(Authentication.verifyToken, UsersCtrl.updateUser)
+        .delete(Authentication.verifyToken, UsersCtrl.deleteUser);
 }
 
 export default usersRoutes;

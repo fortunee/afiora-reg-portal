@@ -12,12 +12,13 @@ const UsersSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isVerified: { type: Boolean, default: false },
+    admin: { type: Boolean, default: false },
     productCategories: String,
     address: String,
     createdAt: Date,
     updatedAt: Date
 });
 
-const Users = mongoose.model('Users', UsersSchema);
+const User = mongoose.model('User', UsersSchema);
 
-export default Users;
+export default User;
