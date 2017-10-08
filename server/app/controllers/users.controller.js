@@ -7,12 +7,14 @@ const secret = process.env.SECRET || 'AGU NECHE MBA';
 
 function  _userAttributes(user) {
     return {
+        id: user._id,
         businessName: user.businessName,
         email: user.email,
         username: user.username,
         productCategories: user.productCategories,
         phone: user.phone,
-        address: user.address
+        address: user.address,
+        isVerified: user.isVerified
     }
 }
 
