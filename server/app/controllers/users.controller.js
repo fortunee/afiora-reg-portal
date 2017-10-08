@@ -130,7 +130,7 @@ class UsersCtrl {
             }
         
             // Find and verify user if they aren't verified already
-            User.findUserByIdAndUserName(decoded.userId, decoded.username, (err, user) => {
+            User.findById(decoded.userId, (err, user) => {
                 if (err) {
                     return res.send(err.errors);
                 }
