@@ -16,10 +16,6 @@ function  _userAttributes(user) {
 }
 
 class UsersCtrl {
-    constructor() {
-
-    }
-
     createUser(req, res) {
         // Check if User exists
         Users.findOne(
