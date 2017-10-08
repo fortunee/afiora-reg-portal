@@ -19,14 +19,14 @@ class Authentication {
         })
     }
 
-    verifyAdmin() {
+    verifyAdmin(req, res, next) {
         User.findById(req.decoded.userId)
             .then((user) => {
-            if (user.admin) {
-                next();
-            } else {
-                return res.status(403).send({ message: 'Access forbidden, you are not an admin!' });
-            }
+                if (user.admin) {
+                    next();
+                } else {
+                    return res.status(403).send({ message: 'Access forbidden, you are not an admin!' });
+                }
             });
     }
 }
