@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { Users } from './../models';
+import { User } from './../models';
 
 const secret = process.env.SECRET || 'AGU NECHE MBA';
 
@@ -20,7 +20,7 @@ class Authentication {
     }
 
     verifyAdmin() {
-        Users.findById(req.decoded.userId)
+        User.findById(req.decoded.userId)
             .then((user) => {
             if (user.admin) {
                 next();
