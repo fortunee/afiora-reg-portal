@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { Users } from './../models';
+import { User } from './../models';
 import ValidatePassword from './../helpers/passwordValidator';
 
 const secret = process.env.SECRET || 'AGU NECHE MBA';
@@ -18,7 +18,7 @@ function  _userAttributes(user) {
 class UsersCtrl {
     createUser(req, res) {
         // Check if User exists
-        Users.findOne(
+        User.findOne(
             {
                 $or: [
                     { email: req.body.email },
@@ -38,7 +38,7 @@ class UsersCtrl {
             // Hash user's password
             req.body.password = ValidatePassword.hashPassword(req.body.password);
             // Create the freaking User
-            Users.create(req.body).then((user) => {
+            User.create(req.body).then((user) => {
                 const token = jwt.sign({
                     /* eslint-disable no-underscore-dangle*/
                     userId: user._id,
@@ -54,7 +54,7 @@ class UsersCtrl {
 
     getUser(req, res) {
         let queryParam = req.params.id;
-        Users.find(queryParam).then((user) => {
+        User.find(queryParam).then((user) => {
             if (!user) {
                 return res.status(404).send({ message: 'User not found'});
             }
@@ -64,13 +64,13 @@ class UsersCtrl {
     }
 
     getAllUsers(req, res) {
-        Users.find().then((users) => {
+        User.find().then((users) => {
             return res.send({ users });
         })
     }
 
     updateUser(req, res) {
-        Users.findById({ _id: req.params.id }).then((user) => {
+        User.findById({ _id: req.params.id }).then((user) => {
             if(!user) {
                 return res.status(404).send({ message: 'User not found!'});
             }
@@ -101,7 +101,7 @@ class UsersCtrl {
     }
 
     deleteUser(req, res) {
-        Users.findByIdAndRemove(req.params.id).then((user) => {
+        User.findByIdAndRemove(req.params.id).then((user) => {
             if (user) {
               return res.status(200).send({ message: 'User successfully deleted' });
             }
