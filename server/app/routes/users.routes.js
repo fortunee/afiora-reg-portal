@@ -22,6 +22,12 @@ const usersRoutes = (router) => {
         .get(Authentication.verifyToken, UsersCtrl.getUser)
         .put(Authentication.verifyToken, UsersCtrl.updateUser)
         .delete(Authentication.verifyToken, UsersCtrl.deleteUser);
+
+    /**
+     * Verify user
+     */
+    router.route('/users/verify/:token')
+        .get(UsersCtrl.verifyEmail)
 }
 
 export default usersRoutes;
