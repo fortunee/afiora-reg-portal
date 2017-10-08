@@ -13,7 +13,7 @@ export const sendVerificationEmail = (email, token) => {
   // Get the actual server address or stick to the localhost
   const serverAddress = process.env.SERVERADDRESS;
   const port = process.env.PORT;
-  const verificationLink = `${serverAddress}:${port}/verifyemail/${token}`;
+  const verificationLink = `${serverAddress}:${port}/users/verify/${token}`;
   const message = {
     from: `Shopafric <${dsl}>`,
     to: email,
