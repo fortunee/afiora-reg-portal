@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { NavigationBar } from '../NavigationBar/NavigationBar'
-import { SignupForm } from './SignupForm';
+import SignupForm from './SignupForm';
 import Footer from '../Footer/Footer';
 
-export default class Home extends Component {
+export default class Homepage extends Component {
   render() {
     return (
       <div className="row center-block">
