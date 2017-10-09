@@ -14,14 +14,14 @@ export class NavigationBar extends React.Component {
               <span className="icon-bar"/>
             </button>
             <Link className="navbar-brand" to="/">
-              <img src={require(`../../assets/img/logo.png`)} alt="moodle logo" height="30"/>
+              <h3 className="brand-title">Afiaora</h3>
             </Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <a href="#">Hi, Kingdom</a>
+                <a href="#"><i className="glyphicon glyphicon-th-list"></i></a>
               </li>
             </ul>
           </div>

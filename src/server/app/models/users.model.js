@@ -13,7 +13,7 @@ const UsersSchema = new Schema({
     password: { type: String, required: true },
     isVerified: { type: Boolean, default: false },
     admin: { type: Boolean, default: false },
-    productCategories: String,
+    productCategories: Array,
     address: String,
     createdAt: Date,
     updatedAt: Date
