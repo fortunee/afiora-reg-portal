@@ -1,0 +1,62 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  min-height: 100%;
+}
+
+nav.navbar {
+  background-color: #85C0C2;
+  border-radius: 0;
+}
+
+.navbar-brand {
+  padding: 10px 15px;
+}
+
+div.signup {
+  padding: 20px 50px 20px 50px;
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+}
+
+.form-control.signup {
+  padding: 20px;
+  background-color: #F2F2F2;
+}
+
+.form-control.signup:focus {
+  outline: none;
+}
+
+.btn.signup {
+  margin-top: 20px;
+  padding: 10px 40px;
+}
+
+.btn.signup, .btn.signup:focus {
+  color: #ffffff;
+  background-color: #85C0C2;
+  border-style: none;
+}
+
+input[type=email], input[type=text], input[type=password] {
+  border-style: none;
+}
+
+input[type=email]:focus, input[type=text]:focus, input[type=password]:focus {
+  box-shadow: none;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #85C0C2;
+  color: #ffffff;
+}

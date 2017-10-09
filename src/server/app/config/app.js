@@ -3,6 +3,9 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import webpack from 'webpack';
+import path from 'path';
+import config from '../../../../webpack.config';
 
 // Manage environment variables
 dotenv.config();
@@ -22,10 +25,19 @@ app.use(bodyParser.json());
 
 routes(router);
 
+const compiler = webpack(config);
+
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
+}));
+
+app.use(require('webpack-hot-middleware')(compiler));
+
 // Fail safe for routes that don't exist
-router.get('*', (req, res) => {
-    res.send({ message: 'You may be lost! Go home'})
-})
+app.get('*', (req, res) => {
+    res.sendFile(path.join( __dirname, '../../../client/index.html'));
+});
 
 app.use('/api', router);
 
