@@ -18,7 +18,6 @@ class SignupForm extends Component {
       productCategories: ['General Merchandise'],
       address: '',
       hasError: false,
-      registrationSuccessful: false,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -68,7 +67,7 @@ class SignupForm extends Component {
         }
       });
       this.props.createMerchant(this.state);
-      
+      console.log('created label', this.props.created)
       if (this.props.created) {
         this.setState((prevState) => {
           return {
@@ -82,7 +81,6 @@ class SignupForm extends Component {
             productCategories: ['General Merchandise'],
             address: '',
             hasError: false,
-            registrationSuccessful: prevState.registrationSuccessful = true
           }
         });
       }
@@ -92,7 +90,7 @@ class SignupForm extends Component {
   render() {
     return (
       <div className="signup">
-        { this.state.registrationSuccessful ?
+        { this.props.created ?
           <div>
             <h4 className="text-success">Thank You for registering with us!</h4>
             <p className="text-info">Please check your email to <strong>verify your account.</strong></p>
@@ -200,8 +198,8 @@ class SignupForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    created: state.MerchantStore.created,
-    createMerchantError: state.MerchantStore.error,
+    created: state.Merchant.created,
+    createMerchantError: state.Merchant.error,
   }
 }
 

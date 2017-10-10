@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import webpack from 'webpack';
 import path from 'path';
-import config from '../../../../webpack.config.dev';
+import config from '../webpack.config.prod';
 
 // Manage environment variables
 dotenv.config();
@@ -13,7 +13,7 @@ dotenv.config();
 // Connect to mongoDB
 mongoose.connect(process.env.MONGO_URL);
 
-import routes from './../routes/';
+import routes from '../src/server/app/routes/';
 
 const app = express();
 const router = express.Router();
@@ -36,7 +36,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 // Fail safe for routes that don't exist
 app.get('*', (req, res) => {
-    res.sendFile(path.join( __dirname, '../../../client/index.html'));
+    res.sendFile(path.join( __dirname, '../public/index.html'));
 });
 
 app.use('/api', router);

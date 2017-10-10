@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import MerchantStore from './merchantReducer';
+import Merchant from './merchantReducer';
 
 const rootReducer = combineReducers({
-  MerchantStore
+  Merchant
 });
 
 export default rootReducer;

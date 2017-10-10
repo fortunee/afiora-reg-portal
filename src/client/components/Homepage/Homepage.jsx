@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { NavigationBar } from '../NavigationBar/NavigationBar'
-import SignupForm from './SignupForm';
-import Footer from '../Footer/Footer';
+import { NavigationBar } from '../NavigationBar/NavigationBar.jsx'
+import SignupForm from './SignupForm.jsx';
+import Footer from '../Footer/Footer.jsx';
 
 export default class Homepage extends Component {
   render() {
