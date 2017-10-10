@@ -7,15 +7,17 @@ export const willCreateMerchant = () => {
   };
 };
 
-export const createMerchantSuccess = () => {
+export const createMerchantSuccess = (merchant) => {
   return {
-    type: types.CREATE_MERCHANT_SUCCESS
+    type: types.CREATE_MERCHANT_SUCCESS,
+    merchant
   };
 };
 
-export const createMerchantFailure = () => {
+export const createMerchantFailure = (error) => {
   return {
-    type: types.CREATE_MERCHANT_FAILURE
+    type: types.CREATE_MERCHANT_FAILURE,
+    error
   };
 };
 
@@ -24,9 +26,8 @@ export const createMerchant = (merchant) => {
     dispatch(willCreateMerchant());
     return axios.post('/api/users/create', merchant).then(response => {
       dispatch(createMerchantSuccess(response.data));
-    }).catch(error => {
-      dispatch(createMerchantFailure());
-      console.log('error', err.response.data.message);
+    }, error => {
+      dispatch(createMerchantFailure(error.response.data.message));
     })
   }
 }

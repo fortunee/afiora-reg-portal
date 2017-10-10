@@ -67,7 +67,9 @@ class SignupForm extends Component {
           productCategories: prevState.productCategories = productCategories
         }
       });
-      this.props.createMerchant(this.state).then(() => {
+      this.props.createMerchant(this.state);
+      
+      if (this.props.created) {
         this.setState((prevState) => {
           return {
             businessName: '',
@@ -83,17 +85,13 @@ class SignupForm extends Component {
             registrationSuccessful: prevState.registrationSuccessful = true
           }
         });
-      }).catch((error) => {
-        console.log(error);
-      });
+      }
     }
   }
 
   render() {
     return (
       <div className="signup">
-        { this.state.hasError ? <h5 className="text-danger">All fields must be filled.</h5> : null}
-        
         { this.state.registrationSuccessful ?
           <div>
             <h4 className="text-success">Thank You for registering with us!</h4>
@@ -102,6 +100,10 @@ class SignupForm extends Component {
           </div> :
           <form>
             <h3 className="signup-title">Register Now!!!</h3>
+            { this.state.hasError ? <h5 className="text-danger">All fields must be filled.</h5> : null}
+
+            <h5 className="text-danger">{this.props.createMerchantError}</h5>
+
             <div className="form-group">
               <input
                 type="text"
@@ -118,7 +120,7 @@ class SignupForm extends Component {
                 type="text"
                 className="form-control signup"
                 name="address"
-                placeholder="Adress"
+                placeholder="Address"
                 onChange={this.handleChange}
                 value={this.state.address}
               />
@@ -196,4 +198,11 @@ class SignupForm extends Component {
   }
 };
 
-export default connect(null, { createMerchant })(SignupForm);
+function mapStateToProps(state) {
+  return {
+    created: state.MerchantStore.created,
+    createMerchantError: state.MerchantStore.error,
+  }
+}
+
+export default connect(mapStateToProps, { createMerchant })(SignupForm);
