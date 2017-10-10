@@ -94,7 +94,7 @@ class SignupForm extends Component {
           <div>
             <h4 className="text-success">Thank You for registering with us!</h4>
             <p className="text-info">Please check your email to <strong>verify your account.</strong></p>
-            <p className="text-warning">We'll keep you posted on new developments and our luch date.</p>
+            <p className="text-warning">We'll keep you posted on new developments and our launch date.</p>
           </div> :
           <form>
             <h3 className="signup-title">Register Now!!!</h3>
