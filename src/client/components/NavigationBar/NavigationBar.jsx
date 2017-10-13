@@ -14,7 +14,7 @@ export class NavigationBar extends React.Component {
               <span className="icon-bar"/>
             </button>
             <Link className="navbar-brand" to="/">
-              <h3 className="brand-title">Afiaora</h3>
+              <h3 className="brand-title">Afiora</h3>
             </Link>
           </div>
 

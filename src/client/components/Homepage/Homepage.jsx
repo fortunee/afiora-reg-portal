@@ -12,9 +12,9 @@ export default class Homepage extends Component {
         <div className="col-md-4">
           <div className="text-center">
             <img className="hidden-xs hidden-sm" src={require('../../assets/img/africa.png')} alt="africa" height="300" />
-            <div style={{padding: '10px'}} />
-            <h1 className="shop-name">Afiaora</h1>
-            <h3 className="brand-title">Building bridges, connecting people...</h3>
+            <div className="pad-10" />
+            <h1 className="shop-name">Afiora</h1>
+            <h3 className="brand-title">Building bridges, communicating values.</h3>
           </div>
         </div>
 

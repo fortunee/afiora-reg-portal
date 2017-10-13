@@ -53,6 +53,10 @@ div.signup {
   opacity: 0.9;
 }
 
+.pad-10 {
+  padding: 10px;
+}
+
 .signup-title {
   color: #5D7881;
 }
