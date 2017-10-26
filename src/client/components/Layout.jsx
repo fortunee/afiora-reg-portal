@@ -20,11 +20,11 @@ class Layout extends Component {
             <div className="visible-xs visible-sm small-screen"/>
             <div className="hidden-sm hidden-xs large-screen"/>
             <h1 className="text-uppercase name">Afiora</h1>
-            <h4 className="slogan">Building bridges, communicating values through e-commerce</h4>
+            <h4 className="slogan">Building bridges and communicating values through e-commerce.</h4>
           </div>
         </div>
         <div className="row section-mission" id="mission">
-          <div className="row text-center"><h3>Afiora Right Now</h3></div>
+          <div className="row text-center"><h2>Afiora Right Now</h2></div>
           <div className="col-sm-12 col-md-4">
             <div className="mission-card">
               <div className="mission-img-holder">

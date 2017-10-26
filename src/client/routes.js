@@ -7,6 +7,5 @@ import Homepage from '../client/components/Homepage/Homepage.jsx';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Homepage} />
-    <Route path="/layout" component={Layout}/>
   </Route>
 );
