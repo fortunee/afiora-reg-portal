@@ -23,6 +23,44 @@ export default class Homepage extends Component {
             <SignupForm />
           </div>
         </div>
+
+        <div className="container">
+          <div className="row">
+            <div className="space" />
+            <div className="col-md-12 about">
+              <div className="col-sm-12">boo</div>
+              <h3 className="text-center">About Us</h3>
+              <div className="row">
+                <div className="col-md-6">
+                  <h4>Vision</h4>
+                  <p>To be the one stop shop for everything made in Africa.</p>
+                </div>
+                <div className="col-md-6">
+                  <h4>Mission</h4>
+                  <p>Building bridges and communicating African values in form
+                    of product and services to the world through E-commerce.
+                  </p>
+                </div>
+                <div className="col-md-6">
+                  <h4>Belief</h4>
+                  <p>We believe that Africa the birthplace of humanity will one day
+                    be the world’s largest economy and we have a major role to play in that.
+                  </p>
+                </div>
+                <div className="col-md-6">
+                  <h4>Afiora Today</h4>
+                  <ul>
+                    <li>The first African indigenous mall</li>
+                    <li>Products available from African countries</li>
+                    <li>Shoppers favourite for everything made in Africa</li>
+                    <li>We sell only Authentic products</li>
+                    <li>Unbeatable price</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <Footer />
       </div>
     );

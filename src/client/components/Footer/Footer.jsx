@@ -6,7 +6,7 @@ function getCurrentYear () {
 
 const Footer = () => {
   return (
-    <div className="footer-style navbar navbar-fixed-bottom text-center">
+    <div className="footer-style text-center">
       <p>&copy;{getCurrentYear()}. Afiora Ltd.</p>
     </div>
   );

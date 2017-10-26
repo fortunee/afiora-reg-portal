@@ -102,7 +102,136 @@ input[type=email]:focus, input[type=text]:focus, input[type=password]:focus, but
 }
 
 .footer-style {
-  padding: 1rem;
-  background-color: transparent;
-  color: #DADADA;
+  padding: 2rem;
+  background-color: #383838;
+  color: #ffffff;
+}
+
+.about {
+  background-color: #ffffff;
+  margin-top: 100px;
+}
+
+@media (min-width: 768) {
+  .about {
+      margin-top: 0px;
+  }
+}
+
+
+/* new layout styling */
+
+.image-wrapper {
+  position: relative;
+  height: 450px;
+  width: 200px;
+  top: 200px;
+  left: 400px;
+}
+
+.image-wrapper > img {
+  height: 50%;
+  vertical-align: center;
+}
+
+.section-banner {
+  height: 100vh;
+  background: url('../img/market_place.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner-overlay {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background-color: #010101;
+  opacity: 0.5;
+}
+
+.name-slogan > .large-screen {
+  padding: 250px 0 0 0;
+}
+
+.name-slogan > .small-screen {
+  padding: 50px 0 0 0;
+}
+
+.name-slogan > .slogan {
+  color: #d1d0d0;
+}
+
+.name-slogan > .name, .signup-callout {
+  color: #ffffff;
+}
+
+.slogan {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 24px;
+}
+
+.signup-callout {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 50px;
+}
+
+.name {
+  font-family: 'Raleway', sans-serif;
+  font-size: 70px;
+}
+
+.chevron-down {
+  position: relative;
+  bottom: -80%;
+}
+
+.chevron-down > a > .fa-chevron-down {
+  color: #ffffff;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.section-mission {
+  background-color: #ffffff;
+  padding: 50px 20px;
+}
+
+.mission-card {
+  background-color: #ffffff;
+  height: 280px;
+  border-radius: 3px;
+  border: 0.5px solid #efefef;
+  margin: 10px 0;
+}
+
+.mission-img-holder {
+  position: relative;
+  height: 60%;
+}
+
+.mission-img-holder > img {
+  height: 100%;
+  width: 100%;
+}
+
+.mission-desc {
+  padding: 10px;
+}
+
+.section-signup {
+  background-color: #010101;
+  padding: 70px 0;
+}
+
+.section-footer {
+  background-color: #181818;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.btn.signup {
+  padding: 15px 60px;
+  font-size: 16px;
+  border-radius: 0;
 }
