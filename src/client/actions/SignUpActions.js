@@ -1,20 +1,20 @@
 import axios from 'axios';
 import * as types from '../types/types';
 
-export const willCreateMerchant = () => {
+const willCreateMerchant = () => {
   return {
     type: types.CREATE_MERCHANT
   };
 };
 
-export const createMerchantSuccess = (merchant) => {
+const createMerchantSuccess = (merchant) => {
   return {
     type: types.CREATE_MERCHANT_SUCCESS,
     merchant
   };
 };
 
-export const createMerchantFailure = (error) => {
+const createMerchantFailure = (error) => {
   return {
     type: types.CREATE_MERCHANT_FAILURE,
     error
@@ -31,3 +31,5 @@ export const createMerchant = (merchant) => {
     })
   }
 }
+
+export default createMerchant;

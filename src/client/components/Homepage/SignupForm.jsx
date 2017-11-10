@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { createMerchant } from '../../actions/SignUpActions';
+import createMerchant from '../../actions/SignUpActions';
 
 class SignupForm extends Component {
   constructor() {
